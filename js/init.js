@@ -1,27 +1,59 @@
-import {createForm} from "./formHandler.js"
+import {formCreator} from "./formHandler.js"
+import {styleForm} from "./formStyler.js"
 import {setEvents} from "./eventHandler.js"
 
-createForm({
+formCreator.createForm({
     id: "myForm",
     action: "test.php",
     method: "post",
     fields: [
-        {
-            type: "checkbox",
-            id: "myCheckbox1",
-            name: "test1"
-        },
-        {
-            type: "checkbox",
-            id: "myCheckbox2",
-            name: "test2"
-        },
-        {
-            type: "range",
-            id: "myRange1",
-            name: "test3"
-        }
+        [   
+            {
+                id: "GFXLow",
+                type: "radio",
+                name: "GFX",
+                title: "Low"
+            },
+            {
+                id: "GFXMedium",
+                type: "radio",
+                name: "GFX",
+                title: "Medium"
+            },
+            {
+                id: "GFXHigh",
+                type: "radio",
+                name: "GFX",
+                title: "High"
+            },
+        ],
+        [
+            {
+                id: "volumeRange",
+                type: "range",
+                name: "volume",
+                min: "1",
+                max: "10",
+                value: "1",
+            },
+        ],
+        [
+            {
+                id: "musicOnOF",
+                type: "checkbox",
+                name: "music",
+            },
+        ],
+        [
+            {
+                id: "soundOnoF",
+                type: "checkbox",
+                name: "sound",
+            }
+        ]
     ]
 });
 
-setEvents();
+styleForm("container", formCreator.getConfig());
+
+setEvents("container", formCreator.getConfig());
